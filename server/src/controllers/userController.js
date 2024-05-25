@@ -20,6 +20,7 @@ const createUser=async(req,res)=>{
       return res.status(500).json({error:error.message}); 
     }
 }
+
 const login=async (req, res)=>{
   const {email,password}=req.body
   try {
