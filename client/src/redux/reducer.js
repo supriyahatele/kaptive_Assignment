@@ -5,6 +5,8 @@ const initialValue={
     isError:false,
     isAuth:false,
     token:null,
+    userName:null,
+    role:null,
 }
 
 export const authReducer=(state=initialValue,{type,payload})=>{

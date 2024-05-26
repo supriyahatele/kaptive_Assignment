@@ -6,14 +6,14 @@ const { blackListTokenModel } = require('../models/blackListToken');
 const saltRound=10;
 
 const createUser=async(req,res)=>{
-    const {username,email,password}=req.body
+    const {firstName,lastName,email,phone,password,role}=req.body
     try {
         const checkEmail=await userModel.findOne({ email: email})
         if(checkEmail){
             return res.status(400).json({error:false,msg:'Email already exist'});   
         }
-        const hashPassword= bcrypt.hash(password,saltRound);
-        const newUser=new userModel({username,email,password:hashPassword});
+        const hashPassword= await bcrypt.hash(password,saltRound);
+        const newUser=new userModel({firstName,lastName,email,phone,password:hashPassword,role});
           await newUser.save()
           return res.status(201).json({error:false,msg:'user registration Successful',user:newUser}); 
     } catch (error) {
@@ -34,7 +34,7 @@ const login=async (req, res)=>{
     }
  const access_token= jwt.sign({userId:checkEmail.userId},process.env.SECRET_KEY,{expiresIn:"1d"})
  const refresh_token= jwt.sign({userId:checkEmail.userId},process.env.SECRET_KEY,{expiresIn:"15min"})
-return res.status(200).json({error:false,msg:'user loggedIn successfully',access_token:access_token,refresh_token:refresh_token});
+return res.status(200).json({error:false,msg:'user loggedIn successfully',access_token:access_token,refresh_token:refresh_token,username:`${checkEmail.firstName} ${checkEmail.lastName}`,role:checkEmail.role});
   } catch (error) {
     return res.status(500).json({error:error.message}); 
   }
@@ -56,7 +56,7 @@ const logout=async (req, res)=>{
 }
 
 const getAllUsers=async (req, res)=>{
-  const {page=1,limit=5}=req.query
+  const {page=1,limit=10}=req.query
   try {
     const skip=(page-1)*limit
     const getAllUser=await userModel.find().limit(limit).skip(skip);

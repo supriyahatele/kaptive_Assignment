@@ -1,47 +1,18 @@
-import { FormLabel, Input, FormControl, Button, useToast } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, Button, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { PostRegister } from '../redux/action'; // Ensure you have this action
 
 const Register = () => {
+  const dispatch = useDispatch();
   const initialVal = {
-    name: "",
-    email: "",
-    password: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    password: '',
   };
   const [formData, setFormData] = useState(initialVal);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-  const toast = useToast();
-
-  const postData = async (payload) => {
-    console.log(payload);
-    try {
-      const data = await axios.post(
-        "http://localhost:3000/api/v1/createUser",
-        payload
-      );
-      console.log("post finished");
-      setFormData(initialVal);
-      navigate('/');
-      toast({
-        title: "Signup Successful",
-        description: "User signed up successfully.",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-    } catch (e) {
-      console.log(e);
-      toast({
-        title: "Error",
-        description: "Error occurred while signing up.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  };
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -50,23 +21,36 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
-    postData(formData);
-    setFormData(initialVal)
+    dispatch(PostRegister(formData));
+    setFormData(initialVal);
   };
 
   return (
-    <div>
+    <Box
+      width={{ base: '100%', md: '30%' }}
+      p={8}
+      boxShadow="lg"
+      backgroundColor="white"
+      borderRadius="md"
+      marginTop={"10"}
+    >
+      <Text as="h1" fontSize="2xl" fontWeight="bold" mb={5}>Register</Text>
       <form onSubmit={handleSubmit}>
         <FormControl>
-          <FormLabel>Username</FormLabel>
+          <FormLabel>First Name</FormLabel>
           <Input
             type="text"
-            name="name"
-            value={formData.name}
+            name="firstName"
+            value={formData.firstName}
             onChange={handleChange}
           />
-          <br />
+          <FormLabel>Last Name</FormLabel>
+          <Input
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
           <FormLabel>Email</FormLabel>
           <Input
             type="email"
@@ -74,7 +58,13 @@ const Register = () => {
             value={formData.email}
             onChange={handleChange}
           />
-          <br />
+          <FormLabel>Phone</FormLabel>
+          <Input
+            type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+          />
           <FormLabel>Password</FormLabel>
           <Input
             type="password"
@@ -82,11 +72,17 @@ const Register = () => {
             value={formData.password}
             onChange={handleChange}
           />
-          <br />
-          <Button type="submit">Submit</Button>
+          <Button
+            mt={5}
+            type="submit"
+            colorScheme="green"
+            width="full"
+          >
+            Submit
+          </Button>
         </FormControl>
       </form>
-    </div>
+    </Box>
   );
 }
 
