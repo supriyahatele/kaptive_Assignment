@@ -3,6 +3,7 @@ import { Box, Text } from '@chakra-ui/react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import newData from '../db.json';
 import { Summary } from './Summary';
+import { StaticDataCards } from './StaticDataCards';
 
 const months = ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -30,7 +31,17 @@ const calculateGrossProfit = (revenue, cogs) => {
     return acc;
   }, {});
 };
+const incomeStatementData = [
+  { title: "Revenue", value: 250000 },
+  { title: "Expenses", value: 180000 },
+  { title: "Net Income", value: 70000 }
+];
 
+const balanceSheetData = [
+  { title: "Assets", value: 500000 },
+  { title: "Liabilities", value: 200000 },
+  { title: "Equity", value: 300000 }
+];
 const Charts = ({ chartType, viewType }) => {
   const revenueData = useMemo(() => calculateTotalRevenue(newData.Sheet1), [newData.Sheet1]);
   const cogsData = useMemo(() => calculateTotalCOGS(newData.Sheet1), [newData.Sheet1]);
@@ -47,9 +58,9 @@ const Charts = ({ chartType, viewType }) => {
     if (viewType === "Summary") {
       return <Summary revenueData={revenueData} cogsData={revenueData} grossProfitData={grossProfitData} />;
     } else if (viewType === "Balance Sheet") {
-      return <Text>Balance Sheet View</Text>;
+      return <StaticDataCards title="Balance Sheet" data={balanceSheetData} />;
     } else if (viewType === "Income Statement") {
-      return <Text>Income Statement View</Text>;
+      return <StaticDataCards title="Income Statement" data={incomeStatementData} />;
     } else {
       return chartType === "bar" ? (
         <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} style={{padding:"5px"}}>

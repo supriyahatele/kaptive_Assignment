@@ -28,11 +28,11 @@ const Sidebar = () => {
           Forecast
         </Button>
       </VStack>
-      <Box mt="300px" ml={"3"}>
-        <Box display={"flex"}>
+      <Box mt="260px" ml={"3"}>
+        <Box display={"flex"} justifyContent={"center"} alignContent={"center"}>
           <Box
-            width={10}
-            height={10}
+            width={"50px"}
+            height={"50px"}
             backgroundColor={"green"}
             borderRadius={"50%"}
             display={"flex"}
@@ -56,13 +56,14 @@ const Sidebar = () => {
           variant="ghost"
           colorScheme="whiteAlpha"
           color="white"
-          fontSize={"lg"}
+          fontSize={"md"}
           ml={"5"}
         >
           {role}
         </Text>
         <Button
-          backgroundColor={"blue.500"} 
+        mt={4}
+          backgroundColor={"blue.600"} 
 
         >
           Logout
