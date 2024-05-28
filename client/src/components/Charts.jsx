@@ -90,7 +90,7 @@ const Charts = ({ chartType, viewType }) => {
 
   return (
     <Box p="4" boxShadow="md" borderRadius="md">
-      <Text fontSize="md" mb="4">Charts</Text>
+      <Text fontSize="md" mb="4" fontWeight={600}>Charts</Text>
       <ResponsiveContainer width="100%" height={250}>
         {renderChart()}
       </ResponsiveContainer>

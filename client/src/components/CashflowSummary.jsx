@@ -25,7 +25,7 @@ const CashflowSummary = () => {
   const currentData = newData.Sheet1.slice(startIndex, endIndex);
   return (
     <Box mt="2" bg="white"  boxShadow="md" borderRadius="md" width={"100%"} p="4">
-      <Text fontSize="md" mb="2">Cashflow Summary</Text>
+      <Text fontSize="md" mb="2" fontWeight={600}>Cashflow Summary</Text>
       <Table variant="simple">
         <Thead>
           <Tr>
