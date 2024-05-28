@@ -19,9 +19,9 @@
   - bcrypt.js for password hashing
   - Axios for HTTP requests
 ## Directory Structure
-
+<img src="kaptiveFolderStucture.png" height="auto" width="300px">
 ## Screenshots:
 
 ### DashBoard
 
-<img src="dashBoardKaptive.png" height="200px" width="700px" height="800px">
+<img src="dashBoardKaptive.png" height="auto" width="700px" >
