@@ -1,10 +1,11 @@
-import { Box, FormControl, FormLabel, Input, Button, Text } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, Button, Text, useToast } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { PostRegister } from '../redux/action'; // Ensure you have this action
 
 const Register = () => {
   const dispatch = useDispatch();
+  const toast = useToast();
   const initialVal = {
     firstName: '',
     lastName: '',
@@ -19,10 +20,27 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(PostRegister(formData));
-    setFormData(initialVal);
+    try {
+      await dispatch(PostRegister(formData));
+      toast({
+        title: "Registration successful.",
+        description: "You have successfully registered.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      setFormData(initialVal);
+    } catch (error) {
+      toast({
+        title: "An error occurred.",
+        description: "Something went wrong. Please try again.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
