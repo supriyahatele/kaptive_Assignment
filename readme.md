@@ -18,3 +18,10 @@
   - JSON Web Tokens (JWT) for authentication
   - bcrypt.js for password hashing
   - Axios for HTTP requests
+## Directory Structure
+
+## Screenshots:
+
+### DashBoard
+
+<img src="" height="200px" width="700px">
