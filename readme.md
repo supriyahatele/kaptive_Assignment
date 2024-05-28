@@ -24,4 +24,4 @@
 
 ### DashBoard
 
-<img src="dashBoardKaptive.png" height="200px" width="700px">
+<img src="dashBoardKaptive.png" height="200px" width="700px" height="800px">
