@@ -1,1 +1,1 @@
-FroentEnd- https://kaptive-assignment-gpqz.vercel.app/
+Deployed Link- https://kaptive-assignment-gpqz.vercel.app/
