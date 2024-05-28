@@ -1,21 +1,11 @@
-import { Box, Text } from '@chakra-ui/react';
-import { Navbar } from './components/Navbar';
-import { Home } from './pages/Home';
-import { AllRoutes } from './routes/AllRoutes';
+import { Box, Text } from "@chakra-ui/react";
+import { Navbar } from "./components/Navbar";
+import { Home } from "./pages/Home";
+import { AllRoutes } from "./routes/AllRoutes";
 
 function App() {
   return (
-    <Box
-      backgroundColor="blue.700"
-      height={{
-        base: 'auto',
-        sm: 'auto',
-        md: '700',
-        lg: '700',
-        xl: '700',
-        '2xl': '100vh',
-      }}
-    >
+    <Box width={"100%"} height={"100vh"} display={"flex"} alignContent={"center"} justifyContent={"center"}  backgroundColor={"gray.500"}>
       <AllRoutes />
     </Box>
   );

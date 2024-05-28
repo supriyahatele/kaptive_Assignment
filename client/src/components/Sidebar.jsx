@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const { userName, role } = useSelector((state) => state.auth);
-  const name = userName.split(" ");
+  const name = userName?.split(" ");
   let newString = "";
   newString = name[0].charAt(0).toUpperCase() + name[1].charAt(0).toUpperCase();
 
@@ -28,10 +28,10 @@ const Sidebar = () => {
           Forecast
         </Button>
       </VStack>
-      <Box mt="260px" ml={"3"}>
-        <Box display={"flex"} justifyContent={"center"} alignContent={"center"}>
+      <Box mt="200px" ml={"3"} >
+        <Box display={"flex"} justifyContent={"center"}width={"150px"} alignContent={"center"}gap={"20px"}  height={"80px"}>
           <Box
-            width={"50px"}
+            width={"60px"}
             height={"50px"}
             backgroundColor={"green"}
             borderRadius={"50%"}
@@ -47,7 +47,7 @@ const Sidebar = () => {
             color="white"
             fontWeight={'bold'}
             fontSize={"lg"}
-            ml={"5"}
+           
           >
             {userName}{" "}
           </Text>
@@ -63,8 +63,8 @@ const Sidebar = () => {
         </Text>
         <Button
         mt={4}
-          backgroundColor={"blue.600"} 
-
+          backgroundColor={"white.600"} 
+color={"black"}
         >
           Logout
         </Button>
