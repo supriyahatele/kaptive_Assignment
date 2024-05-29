@@ -5,7 +5,7 @@ import { AllRoutes } from "./routes/AllRoutes";
 
 function App() {
   return (
-    <Box width={"100%"} height={"100vh"} display={"flex"} alignContent={"center"} justifyContent={"center"}  backgroundColor={"gray.500"}>
+    <Box width={"100%"} height={"705px"} display={"flex"} alignContent={"center"} justifyContent={"center"}  backgroundColor={"blue.200"}>
       <AllRoutes />
     </Box>
   );
